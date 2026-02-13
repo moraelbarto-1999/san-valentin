@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>San Valentín ❤️</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      margin-top: 100px;
+      background-color: #ffe6f0;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      border: none;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #999;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>¿Quieres ser mi San Valentín? 💖</h1>
+
+<button id="yes" onclick="yesClick()">Sí</button>
+<button id="no" onclick="noClick()">No</button>
+
+<script>
+let size = 20;
+
+function yesClick() {
+  document.body.innerHTML = "<h1>Sabía que dirías que sí ❤️🥰</h1>";
+}
+
+function noClick() {
+  size += 10;
+  document.getElementById("yes").style.fontSize = size + "px";
+  alert("¿Estás segura? 😏 No te vas a arrepentir...");
+}
+</script>
+
+</body>
+</html>
