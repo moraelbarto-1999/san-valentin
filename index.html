@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Para Eimy 💖</title>
+  <title>Para mi sucurrumina 💜</title>
   <style>
     body {
+      margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #4b0082, #a020f0);
       font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
+      overflow: hidden;
     }
 
     .container {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+      position: relative;
     }
 
     h1 {
       margin-bottom: 30px;
+    }
+
+    .butterfly {
+      font-size: 40px;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.2s;
+    }
+
+    .butterfly:hover {
+      transform: scale(1.2);
     }
 
     button {
@@ -32,63 +42,62 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     #yes {
-      background-color: #ff4d6d;
+      background-color: #8a2be2;
       color: white;
     }
 
     #no {
-      background-color: #888;
-      color: white;
+      background-color: #ccc;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>¿Eimy, quieres ser mi San Valentín? 💖</h1>
+<div class="container" id="game">
+  <h1>Eimy… captura la mariposa correcta 🦋💜</h1>
 
-  <button id="yes" onclick="yesClick()">Sí 💘</button>
-  <button id="no" onclick="noClick()">No 🙈</button>
+  <div class="butterfly" style="top:-40px; left:-80px;" onclick="wrong()">🦋</div>
+  <div class="butterfly" style="top:60px; left:100px;" onclick="wrong()">🦋</div>
+  <div class="butterfly" style="top:120px; left:-150px;" onclick="correct()">🦋</div>
+  <div class="butterfly" style="top:-120px; left:150px;" onclick="wrong()">🦋</div>
 </div>
 
 <script>
+
+function wrong() {
+  alert("Esa no era mi sucurrumina 😏 intenta otra vez...");
+}
+
+function correct() {
+  document.getElementById("game").innerHTML = `
+    <h1>¿Eimy… quieres ser mi San Valentín? 💜</h1>
+    <button id="yes" onclick="yesClick()">Sí 💘</button>
+    <button id="no" onclick="noClick()">No 🙈</button>
+  `;
+}
+
 let size = 20;
 
-let messages = [
-  "¿Segura mi sucurrumina? 😌",
-  "Mmm no te creo Eimy...",
-  "Piénsalo otra vez hermosa 🥺",
-  "Yo sé que quieres decir que sí...",
-  "No me rompas el corazón así 💔",
-  "Dale una oportunidad a este pobre hombre 😏",
-  "No seas así conmigo mi sucurrumina",
-  "Estás tocando el botón equivocado 😌",
-  "Intentemos otra vez..."
-];
-
-let index = 0;
-
 function yesClick() {
-  document.querySelector(".container").innerHTML =
-  "<h1>Sabía que dirías que sí mi sucurrumina 💖🥰</h1><p>Gracias por ser tan linda y aceptar</p>";
+  document.body.innerHTML = `
+    <h1 style="color:white;">
+      Sabía que dirías que sí mi sucurrumina 💜🦋
+      <br><br>
+      Gracias por hacer que me salgan mariposas… pero de las buenas.
+    </h1>
+  `;
 }
 
 function noClick() {
-  size += 25; // Crece más rápido
+  size += 20;
   document.getElementById("yes").style.fontSize = size + "px";
-
-  document.getElementById("no").innerText = messages[index];
-
-  index++;
-  if (index >= messages.length) {
-    index = 0;
-  }
+  alert("Mmm… ¿segura? 😌");
 }
+
 </script>
 
 </body>
