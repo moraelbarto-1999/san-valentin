@@ -28,7 +28,7 @@
       position: absolute;
       font-size: 30px;
       cursor: pointer;
-      animation: float 4s ease-in-out infinite;
+      animation: float ease-in-out infinite;
     }
 
     @keyframes float {
@@ -66,6 +66,7 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     #yes {
@@ -96,11 +97,11 @@ let message = document.getElementById("message");
 let total = 45;
 let correctIndex = Math.floor(Math.random() * total);
 
-// Generador real de colores aleatorios
 function randomColor() {
   return "hsl(" + Math.floor(Math.random() * 360) + ", 80%, 70%)";
 }
 
+// Crear mariposas
 for (let i = 0; i < total; i++) {
 
   let butterfly = document.createElement("div");
@@ -127,7 +128,7 @@ for (let i = 0; i < total; i++) {
 function showQuestion() {
   document.body.innerHTML = `
     <div style="display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;background:linear-gradient(135deg,#2e004f,#7b2cbf);color:white;text-align:center;">
-      <div style="position:absolute;right:20px;top:20px;font-size:50px;">🏹💘</div>
+      <div style="position:absolute;right:20px;top:20px;font-size:50px;animation:cupidMove 3s ease-in-out infinite;">🏹💘</div>
       <h1>¿Eimy… quieres ser mi San Valentín? 💜</h1>
       <div>
         <button id="yes" onclick="yesClick()">Sí 💘</button>
@@ -138,6 +139,41 @@ function showQuestion() {
 }
 
 let size = 20;
+
+let noMessages = [
+"¿Segura mi sucurrumina?",
+"Mmm… no te creo mucho",
+"Eimy… piénsalo bien",
+"Eso no suena muy convencida",
+"Intenta otra vez 😌",
+"Creo que tu dedo se equivocó",
+"El universo dice que sí",
+"Las mariposas no están de acuerdo",
+"Eso fue un accidente, verdad?",
+"No seas así conmigo",
+"Te doy otra oportunidad",
+"Mira el botón bien 😏",
+"Creo que querías tocar el otro",
+"No me hagas insistir tanto",
+"Eso no combina con el morado",
+"Revisa bien tu decisión",
+"Tu corazón sabe la respuesta",
+"Respira y vuelve a intentar",
+"No me rompas así",
+"Eso fue muy rápido",
+"¿Estás 100% segura?",
+"Creo que lo pensaste poco",
+"Te doy 3 segundos para cambiar",
+"Eso no vibra muy sucurrumina",
+"Estoy dudando de tu dedo",
+"No seas rebelde conmigo",
+"Creo que ese botón está defectuoso",
+"Intentemos otra vez bonita",
+"Eso no fue muy convincente",
+"Me estás retando, verdad?"
+];
+
+let indexNo = 0;
 
 function yesClick() {
   document.body.innerHTML = `
@@ -154,6 +190,14 @@ function yesClick() {
 function noClick() {
   size += 30;
   document.getElementById("yes").style.fontSize = size + "px";
+
+  let noButton = document.getElementById("no");
+  noButton.innerText = noMessages[indexNo];
+
+  indexNo++;
+  if (indexNo >= noMessages.length) {
+    indexNo = 0;
+  }
 }
 
 </script>
