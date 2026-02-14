@@ -2,11 +2,12 @@
 <html>
 <head>
   <title>Para mi sucurrumina 💜</title>
+
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #3b0066, #8a2be2);
+      background: linear-gradient(135deg, #2e004f, #7b2cbf);
       font-family: Arial, sans-serif;
       overflow: hidden;
       color: white;
@@ -14,7 +15,7 @@
     }
 
     h1 {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     #game {
@@ -25,13 +26,15 @@
 
     .butterfly {
       position: absolute;
-      font-size: 35px;
+      font-size: 30px;
       cursor: pointer;
-      transition: transform 0.2s;
+      animation: float 4s ease-in-out infinite;
     }
 
-    .butterfly:hover {
-      transform: scale(1.3);
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
     }
 
     #message {
@@ -40,6 +43,20 @@
       width: 100%;
       font-size: 22px;
       height: 30px;
+    }
+
+    .cupid {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      font-size: 50px;
+      animation: cupidMove 3s ease-in-out infinite;
+    }
+
+    @keyframes cupidMove {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(10px); }
+      100% { transform: translateY(0px); }
     }
 
     button {
@@ -52,7 +69,7 @@
     }
 
     #yes {
-      background-color: #8a2be2;
+      background-color: #9d4edd;
       color: white;
     }
 
@@ -66,6 +83,8 @@
 
 <h1>Eimy… encuentra la mariposa correcta 🦋💜</h1>
 
+<div class="cupid">🏹💘</div>
+
 <div id="game"></div>
 <div id="message"></div>
 
@@ -74,11 +93,14 @@
 let game = document.getElementById("game");
 let message = document.getElementById("message");
 
-let colors = ["#ff69b4", "#dda0dd", "#ffffff", "#ffb6c1", "#e6ccff", "#c77dff"];
-let total = 35; // MUCHAS mariposas
+let total = 45;
 let correctIndex = Math.floor(Math.random() * total);
 
-// Crear mariposas
+// Generador real de colores aleatorios
+function randomColor() {
+  return "hsl(" + Math.floor(Math.random() * 360) + ", 80%, 70%)";
+}
+
 for (let i = 0; i < total; i++) {
 
   let butterfly = document.createElement("div");
@@ -87,14 +109,15 @@ for (let i = 0; i < total; i++) {
 
   butterfly.style.left = Math.random() * 95 + "%";
   butterfly.style.top = Math.random() * 85 + "%";
-  butterfly.style.color = colors[Math.floor(Math.random() * colors.length)];
+  butterfly.style.color = randomColor();
+  butterfly.style.animationDuration = (3 + Math.random() * 3) + "s";
 
   butterfly.onclick = function() {
     if (i === correctIndex) {
       showQuestion();
     } else {
       message.innerHTML = "✖ Esa no era mi sucurrumina 😏";
-      setTimeout(() => message.innerHTML = "", 1500);
+      setTimeout(() => message.innerHTML = "", 1200);
     }
   };
 
@@ -103,7 +126,8 @@ for (let i = 0; i < total; i++) {
 
 function showQuestion() {
   document.body.innerHTML = `
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;background:linear-gradient(135deg,#3b0066,#8a2be2);color:white;text-align:center;">
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;background:linear-gradient(135deg,#2e004f,#7b2cbf);color:white;text-align:center;">
+      <div style="position:absolute;right:20px;top:20px;font-size:50px;">🏹💘</div>
       <h1>¿Eimy… quieres ser mi San Valentín? 💜</h1>
       <div>
         <button id="yes" onclick="yesClick()">Sí 💘</button>
@@ -117,7 +141,7 @@ let size = 20;
 
 function yesClick() {
   document.body.innerHTML = `
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#3b0066,#8a2be2);color:white;text-align:center;padding:20px;">
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#2e004f,#7b2cbf);color:white;text-align:center;padding:20px;">
       <h1>
         Sabía que dirías que sí mi sucurrumina 💜🦋
         <br><br>
@@ -128,7 +152,7 @@ function yesClick() {
 }
 
 function noClick() {
-  size += 25;
+  size += 30;
   document.getElementById("yes").style.fontSize = size + "px";
 }
 
